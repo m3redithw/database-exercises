@@ -32,6 +32,7 @@ FROM
     
 -- q4.
 	-- a. The name of all albums by Pink Floyd
+    -- The Dark Side of the Moon, The Wall
 SELECT 
     name
 FROM
@@ -39,7 +40,7 @@ FROM
 WHERE
     artist = 'Pink Floyd';
    
-   -- b. The year Sgt. Pepper's Lonely Hearts Club Band was released
+   -- b. The year Sgt. Pepper's Lonely Hearts Club Band was released ------ 1967
 SELECT 
     release_date
 FROM
@@ -47,7 +48,7 @@ FROM
 WHERE
     name = 'Sgt. Pepper\'s Lonely Hearts Club Band';
 	
-    -- c. The genre for the album Nevermind
+    -- c. The genre for the album Nevermind ------ Grunge, Alternative rock
 SELECT 
     genre
 FROM
@@ -69,7 +70,7 @@ SELECT
 FROM
     albums
 WHERE
-    sale < 20000000;
+    sales < 20000000;
     
     -- f. All the albums with a genre of "Rock".
     -- Why do these query results not include albums with a genre of "Hard rock" or "Progressive rock"?
@@ -79,4 +80,4 @@ FROM
     albums
 WHERE
     genre = 'Rock';
-    -- becauce 'Rock' <> 'Hard rock', 'Rock' <> 'Progressive rock'.
+    -- becauce we're looking for the exact match. 'Rock' <> 'Hard rock', 'Rock' <> 'Progressive rock'.
