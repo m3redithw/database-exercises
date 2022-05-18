@@ -9,14 +9,14 @@ DESCRIBE titles;
 
 
 -- q6. Which table(s) do you think contain a numeric type column?
--- answer: departments, dept_emp, dept_manager, employees, salaires, titles table contain a numeric type column
+-- answer: dept_emp, dept_manager, employees, salaires, titles table contain a numeric type column
 -- q7. Which table(s) do you think contain a string type column? 
 -- answer: deparments, dept_emp, dept_manager,  employees, titles table contain a string value
 -- q8. Which table(s) do you think contain a date type column? 
 -- answer: dept_emp, dept_manager, employees, salaries, titles contain date type column
 -- q9. What is the relationship between the employees and the departments tables? 
--- answer: they are from the same database,
--- with primary key "dept_no" and "emp_no" which are both associated with the dept_manager table
+-- answer: many-to-many relationship
+-- with primary key "dept_no" and "emp_no" which are both associated with the dept_emp table
 
 SHOW CREATE TABLE dept_manager;
 -- dept_manager	CREATE TABLE `dept_manager` (
