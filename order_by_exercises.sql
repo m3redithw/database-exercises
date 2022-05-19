@@ -46,7 +46,7 @@ WHERE
         AND last_name LIKE '%E'
 ORDER BY hire_date DESC;
 
--- q7. 362 employees returned; the oldest person hired: Alsem Cappello; the youngest person hired: Khun Bernini
+-- q7. 362 employees returned; the oldest person hired: Pettis Douadi; the youngest person hired: Khun Bernini
 SELECT 
     *
 FROM
@@ -54,4 +54,13 @@ FROM
 WHERE
     hire_date LIKE '199%'
         AND birth_date LIKE '%12-25'
-ORDER BY hire_date;
+ORDER BY birth_date, hire_date DESC;
+
+SELECT 
+    *
+FROM
+    employees
+WHERE
+    hire_date LIKE '199%'
+        AND birth_date LIKE '%12-25'
+ORDER BY birth_date DESC, hire_date;
