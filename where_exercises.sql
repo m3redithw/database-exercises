@@ -43,8 +43,10 @@ FROM
 WHERE
     last_name LIKE '%E'
         OR last_name LIKE 'E%';
--- q6. 24292 employees have a last name that ends with E
-	SELECT 
+-- q6. 30723 employees have a last name starts or ends with 'E'.
+	-- 24292 employees have a last name that ends with E
+
+SELECT 
     *
 FROM
     employees
