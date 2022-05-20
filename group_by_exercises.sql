@@ -5,6 +5,7 @@ FROM
     titles;
 -- there are 7 unique titles
 
+-- q3. Write a query to to find a list of all unique last names of all employees that start and end with 'E' using GROUP BY.
 SELECT DISTINCT
     last_name
 FROM
@@ -19,6 +20,8 @@ GROUP BY last_name;
 -- 'Erie'
 -- 'Erbe'
 
+
+-- q4. Write a query to to find all unique combinations of first and last names of all employees whose last names start and end with 'E'.
 SELECT DISTINCT
     CONCAT(first_name, '_', last_name)
 FROM
@@ -28,6 +31,7 @@ WHERE
         AND last_name LIKE 'E%';
 -- unique combination of first name and last name: 846 results
 
+-- q5. Write a query to find the unique last names with a 'q' but not 'qu'. Include those names in a comment in your sql code.
 SELECT DISTINCT
     last_name
 FROM
@@ -39,6 +43,7 @@ WHERE
 -- 'Lindqvist'
 -- 'Qiwen'
 
+-- q6. Add a COUNT() to your results (the query above) to find the number of employees with the same last name.
 SELECT 
     last_name, COUNT(last_name) AS count
 FROM
@@ -51,6 +56,7 @@ GROUP BY last_name;
 -- Lindqvist	190
 -- Qiwen	168
 
+-- q7. Find all all employees with first names 'Irena', 'Vidya', or 'Maya'. Use COUNT(*) and GROUP BY to find the number of employees for each gender with those names.
 SELECT 
     first_name, gender, COUNT(gender)
 FROM
@@ -66,6 +72,8 @@ GROUP BY first_name , gender;
 -- Vidya	F	81
 -- Maya		M	146
 
+-- q8. Are there any duplicate usernames? BONUS: How many duplicate usernames are there?
+-- total:300024; distinct:285872; duplicates: 14152
 SELECT 
     SUBSTR(first_name, 1, 1) AS first,
     SUBSTR(last_name, 1, 4) AS second,
@@ -85,6 +93,22 @@ FROM
     employees
 GROUP BY first , second , third , fourth , username
 ORDER BY first , second , third , fourth , username;
+
+-- SELECT DISTINCT CONCAT(LOWER(SUBSTR(first_name, 1, 1)),
+--             LOWER(SUBSTR(last_name, 1, 4)),
+--             '_',
+--             SUBSTR(birth_date, 6, 2),
+--             SUBSTR(birth_date, 3, 2)) AS username, COUNT(CONCAT(LOWER(SUBSTR(first_name, 1, 1)),
+--             LOWER(SUBSTR(last_name, 1, 4)),
+--             '_',
+--             SUBSTR(birth_date, 6, 2),
+--             SUBSTR(birth_date, 3, 2))) AS numbers
+-- FROM employees
+-- GROUP BY CONCAT(LOWER(SUBSTR(first_name, 1, 1)),
+--             LOWER(SUBSTR(last_name, 1, 4)),
+--             '_',
+--             SUBSTR(birth_date, 6, 2),
+--             SUBSTR(birth_date, 3, 2));
 
 -- q9.
 -- Determine the historic average salary for each employee.
