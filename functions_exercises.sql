@@ -34,6 +34,7 @@ WHERE
     to_date > NOW();
 -- # MIN(salary): 158220, MAX(salary): 38623
 
+-- q6.
 SELECT 
     CONCAT(LOWER(SUBSTR(first_name, 1, 1)),
             LOWER(SUBSTR(last_name, 1, 4)),
