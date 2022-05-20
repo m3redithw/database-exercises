@@ -31,6 +31,8 @@ SELECT
 FROM
     salaries;
 -- # MIN(salary), MAX(salary)
+
+-- q6.
 	SELECT 
     CONCAT(LOWER(SUBSTR(first_name, 1, 1)),
             LOWER(SUBSTR(last_name, 1, 4)),
