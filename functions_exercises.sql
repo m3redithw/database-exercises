@@ -6,8 +6,8 @@ FROM
 WHERE
     last_name LIKE 'E%'
         AND last_name LIKE '%E';
+-- 899 rows returned
 
--- q3.
 SELECT 
     CONCAT(UPPER(first_name), ' ', UPPER(last_name)) AS full_name
 FROM
@@ -15,8 +15,8 @@ FROM
 WHERE
     last_name LIKE 'E%'
         AND last_name LIKE '%E';
+-- 899 rows returned
         
--- q4.
 SELECT 
     DATEDIFF(CURDATE(), hire_date)
 FROM
@@ -29,11 +29,12 @@ WHERE
 SELECT 
     MIN(salary), MAX(salary)
 FROM
-    salaries;
--- # MIN(salary), MAX(salary)
+    salaries
+WHERE
+    to_date > NOW();
+-- # MIN(salary): 158220, MAX(salary): 38623
 
--- q6.
-	SELECT 
+SELECT 
     CONCAT(LOWER(SUBSTR(first_name, 1, 1)),
             LOWER(SUBSTR(last_name, 1, 4)),
             '_',
