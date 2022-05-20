@@ -73,7 +73,7 @@ GROUP BY first_name , gender;
 -- Maya		M	146
 
 -- q8. Are there any duplicate usernames? BONUS: How many duplicate usernames are there?
--- total:300024; distinct:285872; duplicates: 14152
+-- total:300024; distinct:285872; duplicates: 13251
 SELECT 
     SUBSTR(first_name, 1, 1) AS first,
     SUBSTR(last_name, 1, 4) AS second,
@@ -92,23 +92,28 @@ SELECT
 FROM
     employees
 GROUP BY first , second , third , fourth , username
+-- HAVING count >1
 ORDER BY first , second , third , fourth , username;
 
--- SELECT DISTINCT CONCAT(LOWER(SUBSTR(first_name, 1, 1)),
---             LOWER(SUBSTR(last_name, 1, 4)),
---             '_',
---             SUBSTR(birth_date, 6, 2),
---             SUBSTR(birth_date, 3, 2)) AS username, COUNT(CONCAT(LOWER(SUBSTR(first_name, 1, 1)),
---             LOWER(SUBSTR(last_name, 1, 4)),
---             '_',
---             SUBSTR(birth_date, 6, 2),
---             SUBSTR(birth_date, 3, 2))) AS numbers
--- FROM employees
--- GROUP BY CONCAT(LOWER(SUBSTR(first_name, 1, 1)),
---             LOWER(SUBSTR(last_name, 1, 4)),
---             '_',
---             SUBSTR(birth_date, 6, 2),
---             SUBSTR(birth_date, 3, 2));
+SELECT DISTINCT
+    CONCAT(LOWER(SUBSTR(first_name, 1, 1)),
+            LOWER(SUBSTR(last_name, 1, 4)),
+            '_',
+            SUBSTR(birth_date, 6, 2),
+            SUBSTR(birth_date, 3, 2)) AS username,
+    COUNT(CONCAT(LOWER(SUBSTR(first_name, 1, 1)),
+            LOWER(SUBSTR(last_name, 1, 4)),
+            '_',
+            SUBSTR(birth_date, 6, 2),
+            SUBSTR(birth_date, 3, 2))) AS numbers
+FROM
+    employees
+GROUP BY CONCAT(LOWER(SUBSTR(first_name, 1, 1)),
+        LOWER(SUBSTR(last_name, 1, 4)),
+        '_',
+        SUBSTR(birth_date, 6, 2),
+        SUBSTR(birth_date, 3, 2))
+HAVING numbers > 1;
 
 -- q9.
 -- Determine the historic average salary for each employee.
