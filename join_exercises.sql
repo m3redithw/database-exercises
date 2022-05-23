@@ -210,7 +210,7 @@ LIMIT 1;
 -- Vishwani	Minakawa	106491	Marketing
 
 
--- q10.
+-- q10. Determine the average salary for each department. Use all salary information and round your results.
 SELECT 
     d.dept_name, ROUND(AVG(s.salary))
 FROM
