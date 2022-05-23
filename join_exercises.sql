@@ -256,26 +256,33 @@ WHERE
 
 
 -- q12. BONUS Who is the highest paid employee within each department.
--- SELECT d.dept_name, e.first_name, e.last_name, s.salary
+
+
+-- SELECT DISTINCT d.dept_name, e.first_name, e.last_name, s.salary --  COUNT(DISTINCT e.emp_no)
 -- FROM employees as e
+-- JOIN salaries AS s ON e.emp_no = s.emp_no
+-- JOIN dept_emp AS de ON e.emp_no = de.emp_no
+-- JOIN departments AS d ON de.dept_no = d.dept_no
+-- -- WHERE e.emp_no in (
+-- --     SELECT e.emp_no
+-- --     FROM salaries
+-- --     Where to_date > NOW()
+-- --       AND salary = (SELECT MAX(salary) FROM salaries)
+-- -- )
+-- WHERE s.salary  IN (SELECT MAX(salary) FROM salaries WHERE to_date>NOW())
+-- GROUP BY d.dept_name, e.first_name, e.last_name, s.salary;
+-- -- HAVING COUNT(e.emp_no) < 2;
 
---  join dept_emp as emp on e.emp_no = emp.emp_no
---  join salaries as s on emp.emp_no = s.emp_no
---  join departments as d on emp.dept_no = d.dept_no
--- GROUP BY d.dept_name, e.first_name, e.last_name, s.salary
--- ORDER BY (s.salary) DESC;
-
-
-SELECT e.first_name, e.last_name, s.salary, d.dept_name--  COUNT(DISTINCT e.emp_no)
-FROM employees as e
-JOIN salaries AS s ON e.emp_no = s.emp_no
-JOIN dept_emp AS de ON e.emp_no = de.emp_no
-JOIN departments AS d ON de.dept_no = d.dept_no
-WHERE e.emp_no in (
-    SELECT e.emp_no
-    FROM salaries
-    Where to_date > NOW()
-      AND salary = (SELECT max(salary) FROM salaries)
-)
-GROUP BY e.first_name, e.last_name, s.salary, d.dept_name;
--- HAVING COUNT(e.emp_no) < 2;
+SELECT DISTINCT
+    d.dept_name, MAX(s.salary)
+FROM
+    employees AS e
+        JOIN
+    salaries AS s ON e.emp_no = s.emp_no
+        JOIN
+    dept_emp AS de ON e.emp_no = de.emp_no
+        JOIN
+    departments AS d ON de.dept_no = d.dept_no
+WHERE
+    de.to_date > NOW()
+GROUP BY d.dept_name;
