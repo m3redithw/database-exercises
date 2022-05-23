@@ -100,11 +100,20 @@ ORDER BY t.title;
 
 
 -- q5. Find the current salary of all current managers.
-SELECT d.dept_name AS 'Department Name' ,CONCAT(e.first_name, ' ', e.last_name) AS 'Name', s.salary AS 'Salary'
-FROM departments AS d JOIN dept_manager AS m ON d.dept_no = m.dept_no
-JOIN employees AS e ON m.emp_no = e.emp_no
-JOIN salaries AS s ON e.emp_no = s.emp_no
-WHERE m.to_date>NOW() AND s.to_date>NOW()
+SELECT 
+    d.dept_name AS 'Department Name',
+    CONCAT(e.first_name, ' ', e.last_name) AS 'Name',
+    s.salary AS 'Salary'
+FROM
+    departments AS d
+        JOIN
+    dept_manager AS m ON d.dept_no = m.dept_no
+        JOIN
+    employees AS e ON m.emp_no = e.emp_no
+        JOIN
+    salaries AS s ON e.emp_no = s.emp_no
+WHERE
+    m.to_date > NOW() AND s.to_date > NOW()
 ORDER BY d.dept_name;
 
 
