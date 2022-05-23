@@ -39,14 +39,14 @@ SELECT
 FROM
     employees
 WHERE
-    emp_no IN (SELECT 
+    emp_no NOT IN (SELECT 
             emp_no
         FROM
             dept_emp
         WHERE
-            to_date < NOW());
+            to_date > NOW());
 
--- 85108
+-- 59900
 
 
 -- q4. Find all the current department managers that are female.
@@ -54,21 +54,12 @@ WHERE
 
 SELECT e.first_name, e.last_name
 FROM employees AS e
-WHERE e.emp_no IN (SELECT emp_no FROM dept_manager) AND e.gender = 'F';
+WHERE e.emp_no IN (SELECT emp_no FROM dept_manager WHERE to_date>NOW()) AND e.gender = 'F';
 -- # first_name	last_name
 -- Isamu	Legleitner
--- Shirish	Ossenbruggen
 -- Karsten	Sigstam
--- Krassimir	Wegerle
--- Rosine	Cools
 -- Leon	DasSarma
--- Peternela	Onuegbe
--- Rutger	Hofmeyr
--- Sanjoy	Quadeer
 -- Hilary	Kambil
--- Tonny	Butterworth
--- Marjo	Giarratana
--- Xiaobin	Spinelli
 
 
 -- q5. 
