@@ -159,7 +159,11 @@ FROM
 WHERE emp.to_date > NOW() AND s.to_date > NOW()
 GROUP BY d.dept_name
 ORDER BY AVG(s.salary) DESC
-;
+LIMIT 1;
+
+
+-- # dept_name	average_salary
+-- Sales	88852.9695
 
 
 -- q8. Who is the highest paid employee in the Marketing department?
@@ -231,7 +235,7 @@ ORDER BY AVG(s.salary) DESC;
 -- Human Resources	55575
 
 
--- q11. Find the names of all current employees, their department name, and their current manager's name.
+-- q11. BONUS Find the names of all current employees, their department name, and their current manager's name.
 SELECT 
     CONCAT(e.first_name, ' ', e.last_name) AS 'Employee Name',
     d.dept_name AS 'Department Name',
@@ -249,3 +253,29 @@ FROM
 WHERE
     emp.to_date > NOW()
         AND m.to_date > NOW();
+
+
+-- q12. BONUS Who is the highest paid employee within each department.
+-- SELECT d.dept_name, e.first_name, e.last_name, s.salary
+-- FROM employees as e
+
+--  join dept_emp as emp on e.emp_no = emp.emp_no
+--  join salaries as s on emp.emp_no = s.emp_no
+--  join departments as d on emp.dept_no = d.dept_no
+-- GROUP BY d.dept_name, e.first_name, e.last_name, s.salary
+-- ORDER BY (s.salary) DESC;
+
+
+SELECT e.first_name, e.last_name, s.salary, d.dept_name--  COUNT(DISTINCT e.emp_no)
+FROM employees as e
+JOIN salaries AS s ON e.emp_no = s.emp_no
+JOIN dept_emp AS de ON e.emp_no = de.emp_no
+JOIN departments AS d ON de.dept_no = d.dept_no
+WHERE e.emp_no in (
+    SELECT e.emp_no
+    FROM salaries
+    Where to_date > NOW()
+      AND salary = (SELECT max(salary) FROM salaries)
+)
+GROUP BY e.first_name, e.last_name, s.salary, d.dept_name;
+-- HAVING COUNT(e.emp_no) < 2;
