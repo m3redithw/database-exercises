@@ -91,18 +91,18 @@ WHERE
     salary >= (SELECT 
             MAX(salary)
         FROM
-            salaries) - (SELECT 
+            salaries WHERE to_date>NOW()) - (SELECT 
             STD(salary)
         FROM
-            salaries)
+            salaries WHERE to_date>NOW())
         AND to_date > NOW();
 
--- 78 salaries are within 1 standard deviation of the current highest salary
+-- 83 salaries are within 1 standard deviation of the current highest salary
 
-SELECT COUNT(*) FROM salaries;
-SELECT 78/2844047;
+SELECT COUNT(*) FROM salaries WHERE to_date>NOW();
+SELECT 83/240124;
 
--- 0.002743%
+-- 0.0346% is above the threshold
 
 
 -- BONUS1. Find all the department names that currently have female managers.
