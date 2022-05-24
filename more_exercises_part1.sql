@@ -220,16 +220,26 @@ WHERE
 
 -- 8. ORDER BY statement
 -- a. Select all columns from the film table and order rows by the length field in ascending order.
-SELECT * from film
-order by length;
+SELECT 
+    *
+FROM
+    film
+ORDER BY length;
 
 -- b. Select all distinct ratings from the film table ordered by rating in descending order.
-SELECT DISTINCT rating from film order by rating DESC;
+SELECT DISTINCT
+    rating
+FROM
+    film
+ORDER BY rating DESC;
 
 -- c. Select the payment date and amount columns from the payment table for the first 20 payments ordered by payment amount in descending order.
-select payment_date, amount from payment
-order by amount
-limit 20;
+SELECT 
+    payment_date, amount
+FROM
+    payment
+ORDER BY amount
+LIMIT 20;
 
 -- d. Select the title, description, special features, length,
 -- and rental duration columns from the film table for the first 10 films
@@ -309,7 +319,19 @@ FROM
 -- f.  Select the first_name, last_name, address, address2, city name, district, and postal code columns
 -- from the staff table, performing 2 left joins with the address table then the city table
 -- to get the address and city related columns.
-select first_name, last_name, address_id, address2, city name, district, postal_code
-from staff left join address using (address_id) left join city using (city_id);
+SELECT 
+    first_name,
+    last_name,
+    address_id,
+    address2,
+    city name,
+    district,
+    postal_code
+FROM
+    staff
+        LEFT JOIN
+    address USING (address_id)
+        LEFT JOIN
+    city USING (city_id);
 
 -- 2 rows returned
