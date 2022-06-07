@@ -172,3 +172,23 @@ FROM
 
 -- q19. List the top five genres in gross revenue in descending order.
 -- (Hint: you may need to use the following tables: category, film_category, inventory, payment, and rental.)
+SELECT 
+    SUM(p.amount) AS 'Revenue', c.name
+FROM
+    category AS c
+        JOIN
+    film_category AS fc USING (category_id)
+        JOIN
+    inventory AS i USING (film_id)
+        JOIN
+    rental AS r USING (inventory_id)
+        JOIN
+    payment AS p USING (customer_id)
+GROUP BY c.name
+ORDER BY SUM(p.amount) DESC
+LIMIT 5;
+-- '138295.47','Sports'
+-- '137116.48','Animation'
+-- '130684.74','Action'
+-- '129048.71','Family'
+-- '127768.37','Sci-Fi'
